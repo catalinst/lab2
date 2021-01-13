@@ -1,5 +1,8 @@
 package isp.lab2;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 public class Exercise3 {
 
     /**
@@ -9,7 +12,15 @@ public class Exercise3 {
      * @return true if number is prime and false otherwise
      */
     public static boolean isPrimeNumber(final int number) {
-        throw new UnsupportedOperationException();
+        if (number == 2) return true;
+
+        if (number <= 1 || number % 2 == 0) return false;
+
+        for (int i = 3; i < Math.sqrt(number); i += 2) {
+            if (number % i == 0) return false;
+        }
+
+        return true;
     }
 
     /**
@@ -19,7 +30,14 @@ public class Exercise3 {
      * @return an int representing the sum of digits of the given number
      */
     public static int calculateSumOfDigits(int number) {
-        throw new UnsupportedOperationException();
+        int sum = 0;
+
+        while (number != 0) {
+            sum += number % 10;
+            number = number / 10;
+        }
+
+        return sum;
     }
 
     /**
@@ -33,7 +51,19 @@ public class Exercise3 {
      */
     public static int[] getPrimeNumbersFromInterval(int a, int b) {
         // TODO: Use isPrimeNumber(final int number)
-        throw new UnsupportedOperationException();
+        int[] numbers = new int[b - a + 1];
+        int counter = 0;
+
+        for (int i = a; i <= b; i++) {
+            if (isPrimeNumber(i)) {
+                numbers[counter] = i;
+                counter++;
+            }
+        }
+
+        int primesNumbers[] = Arrays.copyOfRange(numbers, 0 , counter);
+
+        return primesNumbers;
     }
 
     /**
@@ -43,7 +73,16 @@ public class Exercise3 {
      * @return the geometric mean of the given numbers
      */
     public static double calculateGeometricMean(int[] primeNumbers) {
-        throw new UnsupportedOperationException();
+        double mean;
+        double value = 1;
+
+        for (int primeNumber : primeNumbers) {
+            value *= primeNumber;
+        }
+
+        mean = Math.pow(value, (double)1/primeNumbers.length);
+
+        return mean;
     }
 
     /**
@@ -56,12 +95,20 @@ public class Exercise3 {
      */
     public static int numberOfPNWithEvenSumOfDigits(int[] primeNumbers) {
         // TODO: Use calculateSumOfDigits(int number)
-        throw new UnsupportedOperationException();
+        int goodNumbers = 0; // numbers that pass the condition
+
+        for (int i = 0; i < primeNumbers.length; i++) {
+            if (calculateSumOfDigits(primeNumbers[i]) % 2 == 0) {
+                goodNumbers++;
+            }
+        }
+        return goodNumbers;
     }
 
     public static void main(String[] args) {
-        int a = 0;
-        int b = 0;
+        int a = 50;
+        int b = 80;
+        System.out.println(Arrays.toString(getPrimeNumbersFromInterval(a, b)));
         System.out.println("The geometric mean is: " + calculateGeometricMean(getPrimeNumbersFromInterval(a, b)));
         System.out.println("The number of prime numbers which have the sum of digits an even number is: " + numberOfPNWithEvenSumOfDigits(getPrimeNumbersFromInterval(a, b)));
     }

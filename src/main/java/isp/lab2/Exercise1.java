@@ -1,5 +1,8 @@
 package isp.lab2;
 
+import java.util.Random;
+import java.util.Scanner;
+
 public class Exercise1 {
 
     /**
@@ -10,7 +13,18 @@ public class Exercise1 {
      * @return the array of numbers read from keyboard
      */
     private static int[] getUserNumbers() {
-        throw new UnsupportedOperationException();
+        Random random = new Random();
+        Scanner scanner = new Scanner(System.in);
+        int randomNumber = random.nextInt(10 - 2) + 2;
+        int[] numbers = new int[randomNumber];
+
+        System.out.println("Please enter " + randomNumber + " numbers.");
+
+        for (int i = 0; i <randomNumber ; i++) {
+            numbers[i] = scanner.nextInt();
+        }
+
+        return numbers;
     }
 
     /**
@@ -20,7 +34,13 @@ public class Exercise1 {
      * @return the arithmetical mean of the given numbers
      */
     protected static double computeTheArithmeticalMean(int[] userNumbers) {
-        throw new UnsupportedOperationException();
+        double sum = 0;
+
+        for (int i = 0; i < userNumbers.length; i++) {
+            sum += userNumbers[i];
+        }
+
+        return sum / userNumbers.length;
     }
 
     public static void main(String[] args) {

@@ -1,5 +1,7 @@
 package isp.lab2;
 
+import java.util.Random;
+
 public class Exercise5 {
 
     /**
@@ -8,7 +10,14 @@ public class Exercise5 {
      * @return the random numbers
      */
     public static int[] generateRandomNumbers() {
-        throw new UnsupportedOperationException();
+        int[] randomNumbers = new int[20];
+        Random random = new Random();
+
+        for (int i = 0; i < randomNumbers.length; i++) {
+            // .nextInt(max - min) + min
+            randomNumbers[i] = random.nextInt(2000) - 1000;
+        }
+        return randomNumbers;
     }
 
     /**
@@ -18,7 +27,20 @@ public class Exercise5 {
      * @return sorted int array
      */
     public static int[] getSortedNumbers(int[] randomNumbers) {
-        throw new UnsupportedOperationException();
+        int aux;
+
+        //bubble sort
+        for (int i = 0; i < randomNumbers.length -1 ; i++) {
+            for (int j = 0; j < randomNumbers.length - i - 1; j++) {
+                if (randomNumbers[j] > randomNumbers[j + 1]) {
+                    aux = randomNumbers[j];
+                    randomNumbers[j] = randomNumbers[j + 1];
+                    randomNumbers[j + 1] = aux;
+                }
+            }
+        }
+
+        return randomNumbers;
     }
 
     public static void main(String[] args) {

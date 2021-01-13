@@ -9,7 +9,15 @@ public class Exercise4 {
      * @return true if number is prime and false otherwise
      */
     public static boolean isPrimeNumber(final int number) {
-        throw new UnsupportedOperationException();
+        if (number == 2) return true;
+
+        if (number <= 1 || number % 2 == 0) return false;
+
+        for (int i = 3; i < Math.sqrt(number); i += 2) {
+            if (number % i == 0) return false;
+        }
+
+        return true;
     }
 
     /**
@@ -19,7 +27,17 @@ public class Exercise4 {
      * @return first odd number from the array
      */
     public static int firstOdd(int[] someNumbers) {
-        throw new UnsupportedOperationException();
+        int oddNumber = -1; // in case that array hasn't an oddNumber
+
+        for (int number : someNumbers) {
+            if (number % 2 != 0) {
+                oddNumber = number;
+                return oddNumber;
+            }
+        }
+
+        return oddNumber;
+
     }
 
     /**
@@ -29,7 +47,16 @@ public class Exercise4 {
      * @return first even number from the array
      */
     public static int firstEven(int[] someNumbers) {
-        throw new UnsupportedOperationException();
+        int evenNumber = -1; // in case that array hasn't an even number
+
+        for (int number : someNumbers) {
+            if (number % 2 == 0) {
+                evenNumber = number;
+                return evenNumber;
+            }
+        }
+
+        return evenNumber;
     }
 
     /**
@@ -40,7 +67,16 @@ public class Exercise4 {
      */
     public static int firstPrime(int[] someNumbers) {
         // TODO: Use isPrimeNumber(final int number)
-        throw new UnsupportedOperationException();
+        int primeNumber = -1; // in case that array hasn't a prime number
+
+        for (int number : someNumbers) {
+            if (isPrimeNumber(number)) {
+                primeNumber = number;
+                return primeNumber;
+            }
+        }
+
+        return primeNumber;
     }
 
     /**
